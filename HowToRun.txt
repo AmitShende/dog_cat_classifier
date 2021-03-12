@@ -1,0 +1,73 @@
+# Steps for deploying on heroku
+main file name should be app.py
+Flask instance name should be app
+    app:app
+Create empty file Procfile without any extention ( P should be capital)
+    web: gunicorn app:app
+*************************************************
+# Initialising the git
+git init
+git add .
+git status
+git commit -m "Initial commit"
+git remote add origin remoteurl
+***************************************************
+#Steps to push your application from local to heroku cloud
+
+heroku login
+
+heroku create
+
+git remote -v
+
+git push origin master
+***************************************************
+# Steps for deploying on AWS elastic Beanstalk
+Step1: main python file should be application.py
+Step2: Flask object name, which we have defined in application.py should also be the application
+step3: .ebignore (contains files in folder whics we dont want to push to cloud)
+step 4: create a requirements .txt
+        pip freeze> requirments.txt
+Step 5: Create a folder in your application and name it as .ebextensions
+step 6: Inside .ebextensions we have to create a new file named as python.
+Step 7: In pyhon.config we supposed to mention the below commands
+        option_settings:
+            "aws:elasticbeanstalk:container:python":
+            WSGIPath: application:application
+Step 8: Upload the application
+***********************************
+# Steps for deploying appp on GCP
+Step1: main python file should be main.py
+Step2: Flask object name, which we have defined in main.py should also be the application or app
+step3: Create new file and name is as app.yaml
+Step4: add the below content to app.yaml
+		runtime: python
+		env: flex
+		entrypoint: gunicorn -b :$PORT main:application
+		
+		runtime_config:
+			python_version: 3
+			
+			manual_scaling:
+				instances: 1
+				resources:
+					cpu:1
+					memory_gb: 0.5
+					disk_size_gb: 10
+Step 5: Initialize your local git using below commands
+		git init (git bash)
+		git add .
+		git commit -m "Initial commit"
+		git status
+	*****************************************
+		pushing files to github	
+		
+		git branch -m main
+		git add .
+		git push "github repository url" main
+		git checkout main
+		
+		
+
+
+
